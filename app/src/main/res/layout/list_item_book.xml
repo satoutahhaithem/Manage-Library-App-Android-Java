@@ -8,26 +8,83 @@
     app:cardElevation="7dp"
     android:layout_margin="5dp"
     >
-
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="150dp"
-            android:id="@+id/imgBook"
-            android:src="@drawable/ic_launcher_background"/>
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Book Name"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_below="@id/imgBook"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="7dp"
-            android:id="@+id/txtBookName"
-            />
-        
+            android:id="@+id/collapsedRelativeLayout"
+            >
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="220dp"
+                android:id="@+id/imgBook"
+                android:src="@drawable/ic_launcher_background"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Book Name"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_below="@id/imgBook"
+                android:layout_marginTop="7dp"
+                android:id="@+id/txtBookName"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_down_arrow"
+                android:layout_below="@+id/imgBook"
+                android:layout_marginTop="7dp"
+                android:id="@+id/imgDownArrow"
+                android:layout_alignParentEnd="true"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/collapsedRelativeLayout"
+            android:id="@+id/expandedRelativeLayout"
+            android:visibility="gone"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Author"
+                android:id="@+id/txtAuthor"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Haithem Satoutah"
+                android:id="@+id/txtAuthorName"
+                android:layout_below="@+id/txtAuthor"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtShortDesc"
+                android:text="Short Description here"
+                android:layout_below="@+id/txtAuthorName"
+                android:layout_marginTop="10dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_up_arrow"
+                android:layout_below="@id/txtShortDesc"
+                android:layout_alignParentRight="true"
+                android:id="@+id/imgUpArrow"
+                />
+
+
+        </RelativeLayout>
+
+
+
+
     </RelativeLayout>
+
 </com.google.android.material.card.MaterialCardView>

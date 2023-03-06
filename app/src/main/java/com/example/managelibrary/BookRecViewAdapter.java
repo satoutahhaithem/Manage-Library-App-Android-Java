@@ -6,14 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.Glide;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -49,6 +53,18 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
                 Toast.makeText(mContext, books.get(position).getName()+" Selected", Toast.LENGTH_SHORT).show();
             }
         });
+        holder.txtAuthor.setText(books.get(position).getAuthor());
+        holder.txtShotDescription.setText(books.get(position).getShortDesc());
+
+        if (books.get(position).isExpanded()){
+            TransitionManager.beginDelayedTransition(holder.parent);
+            holder.expandedRelativeLayout.setVisibility(View.VISIBLE);
+            holder.imgDownArrow.setVisibility(View.GONE);
+        }else {
+            TransitionManager.beginDelayedTransition(holder.parent);
+            holder.expandedRelativeLayout.setVisibility(View.GONE);
+            holder.imgDownArrow.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -65,11 +81,40 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         private CardView parent;
         private ImageView imgBook;
         private TextView txtName;
+        private ImageView imgDownArrow,imgupArrow;
+        private RelativeLayout expandedRelativeLayout;
+        private TextView txtAuthor,txtShotDescription;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             parent=itemView.findViewById(R.id.parent);
             imgBook=itemView.findViewById(R.id.imgBook);
             txtName=itemView.findViewById(R.id.txtBookName);
+
+
+            imgDownArrow =itemView.findViewById(R.id.imgDownArrow);
+            imgupArrow=itemView.findViewById(R.id.imgUpArrow);
+            expandedRelativeLayout=itemView.findViewById(R.id.expandedRelativeLayout);
+            txtAuthor=itemView.findViewById(R.id.txtAuthorName);
+            txtShotDescription=itemView.findViewById(R.id.txtShortDesc);
+
+            imgDownArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Book book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
+
+            imgupArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Book book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
+
         }
     }
 }
