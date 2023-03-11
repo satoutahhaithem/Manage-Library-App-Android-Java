@@ -1,7 +1,10 @@
 package com.example.managelibrary;
 
+import static com.example.managelibrary.BookRecViewAdapter.BOOK_ID_KEY;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,17 +23,18 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
         initViews();
         //TODO Get the data from the recycler view
-        Book book=new Book(1,"Secret","Jhon Smith",1350,
-                "https://m.media-amazon.com/images/I/81lA9fSZMZL._CR0,204,1224,1224_UX256.jpg",
-                "My short Des of the secret ","My Long desc of the secret" +
-                "____________________________________________________________________" +
-                "______________________________________________________________________" +
-                "________________________________________________________________________" +
-                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" +
-                "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" +
-                "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-        setData(book);
+
+
+        Intent intent =getIntent();
+        if (null != intent){
+            int bookId=intent.getIntExtra(BOOK_ID_KEY,-1);
+            if (bookId != -1){
+                Book incomingBook=Utils.getInstance().getBookById(bookId);
+                if (null != incomingBook){
+                    setData(incomingBook);
+                }
+            }
+        }
     }
     private void setData(Book book){
         txtBookName.setText(book.getName());

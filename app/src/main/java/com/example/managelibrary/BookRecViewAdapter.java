@@ -26,6 +26,8 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
 
     private static final String TAG = "BookRecViewAdapter";
 
+    public static final String BOOK_ID_KEY = "bookId";
+
     private ArrayList<Book> books=new ArrayList<>();
     private Context mContext;
 
@@ -52,6 +54,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext,BookActivity.class);
+                intent.putExtra(BOOK_ID_KEY,books.get(position).getId());
                 mContext.startActivity(intent);
             }
         });
