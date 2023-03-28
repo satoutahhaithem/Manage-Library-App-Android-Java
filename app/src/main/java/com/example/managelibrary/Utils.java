@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Utils {
 
     private static Utils instance;
-
     private static ArrayList<Book> allBooks;
     private static ArrayList<Book> currentlyReadBook;
     private static ArrayList<Book> wantToReadBook;
@@ -67,7 +66,7 @@ public class Utils {
         return favoriteBook;
     }
 
-    public static ArrayList<Book> getAlreadyReadingBook() {
+    public static ArrayList<Book> getAlreadyReadBook() {
         return alreadyReadingBook;
     }
 
@@ -79,4 +78,18 @@ public class Utils {
         }
         return null;
     }
+
+    public boolean addToAlreadyRead(Book book){
+        return alreadyReadingBook.add(book);
+    }
+    public boolean addToCurretlyReadingBook(Book book){
+        return currentlyReadBook.add(book);
+    }
+    public boolean addToFavorite(Book book){
+        return favoriteBook.add(book);
+    }
+    public boolean addToWantToRead(Book book){
+        return wantToReadBook.add(book);
+    }
+
 }
