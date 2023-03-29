@@ -49,6 +49,7 @@
             android:layout_below="@+id/collapsedRelativeLayout"
             android:id="@+id/expandedRelativeLayout"
             android:visibility="gone"
+
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -78,7 +79,20 @@
                 android:layout_alignParentRight="true"
                 android:id="@+id/imgUpArrow"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtViewDelete"
+                android:textColor="@color/red"
+                android:text="Delete"
+                android:layout_below="@+id/txtShortDesc"
+                android:layout_toStartOf="@id/imgUpArrow"
+                android:visibility="gone"
 
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginRight="10dp"
+                />
 
         </RelativeLayout>
 
